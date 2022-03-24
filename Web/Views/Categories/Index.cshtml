@@ -1,0 +1,85 @@
+﻿@model IEnumerable<Core.Entities.Blog>
+
+@{
+    ViewData["Title"] = $"{ViewBag.categoryName.ToString().Substring(0, 1).ToUpper()}{ViewBag.categoryName.ToString().Substring(1)} Blogs";
+}
+
+<!-- Start Featured Area  -->
+<div style="min-height: 70vh;" class="axil-featured-post axil-section-gap bg-color-grey">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title">
+                    <h2 class="title">Blogs from @ViewBag.categoryName category</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @if (@Model.Any())
+            {
+                foreach (var blog in Model)
+                {
+                    <!-- Start Single Post  -->
+                    <div class="col-lg-6 col-xl-6 col-md-12 col-12 mt--30">
+                        <div
+                            class="content-block content-block-custom content-direction-column axil-control is-active post-horizontal thumb-border-rounded">
+                            <div class="post-content">
+                                <div class="post-cat">
+                                    <div class="post-cat-list">
+                                        <a class="hover-flip-item-wrapper" asp-controller="Categories" asp-action="Index" asp-route-categoryName="@blog.Category.Name">
+                                            <span class="hover-flip-item">
+                                                <span data-text="@blog.Category.Name">@blog.Category.Name</span>
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <h4 class="title">
+                                    <a asp-controller="Blogs" asp-action="Details" asp-route-uniqueUrl="@blog.UniqueUrl">
+                                        @{
+                                            var title = blog.Title.Length > 30 ? $"{blog.Title.Substring(0, 27)}..." : blog.Title;
+                                        }
+                                        @title
+                                    </a
+                                    >
+                                </h4>
+                                <div class="post-meta">
+                                    <div class="post-author-avatar border-rounded">
+                                        <img
+                                            src="~/uploads/users/@blog.User.ProfilePicture"
+                                            alt="Author Images"/>
+                                    </div>
+                                    <div class="content">
+                                        <h6 class="post-author-name">
+                                            <a class="hover-flip-item-wrapper" href="author.html">
+                                                <span class="hover-flip-item">
+                                                    <span data-text="Ismat Jahan">@blog.User.FullName</span>
+                                                </span>
+                                            </a>
+                                        </h6>
+                                        <ul class="post-meta-list">
+                                            <li>@blog.CreatedDate.ToString("mmm dd, yyyy")</li>
+                                            <li>@blog.ViewCount Views</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="post-thumbnail post-thumbnail-custom">
+                                <a asp-controller="Blogs" asp-action="Details" asp-route-uniqueUrl="@blog.UniqueUrl">
+                                    <img
+                                        src="~/uploads/blogs/@blog.Banner"
+                                        alt="Post Images"/>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Single Post  -->
+                }
+            }
+            else
+            {
+                <p class="ml-3 p-3">No blogs posted yet.</p>
+            }
+        </div>
+    </div>
+</div>
+<!-- End Featured Area  -->

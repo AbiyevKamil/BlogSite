@@ -1,0 +1,21 @@
+@{
+    ViewBag.Title = "Email Confirmation";
+}
+
+<style>
+    .custom-container {
+        min-height: 70vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+</style>
+
+<div class="custom-container text-white text-center">
+    <p>@ViewBag.Status</p>
+    @if (ViewBag.Error is not null)
+    {
+        <a asp-action="SendConfirmEmail" asp-controller="Auth">Send email confirmation link again.</a>
+    }
+</div>

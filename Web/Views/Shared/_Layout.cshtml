@@ -1,0 +1,330 @@
+﻿@using Service.Business.Abstract
+@inject ICategoryService _categoryService
+@inject IUserService _userService
+
+
+
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<!-- Mirrored from axilthemes.com/demo/template/blogar/index-dark.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 17 Mar 2022 22:20:19 GMT -->
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+    <title>@ViewData["Title"] - Blogar</title>
+    <meta name="robots" content="noindex, follow"/>
+    <meta name="description" content=""/>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <!-- Favicon -->
+    <link
+        rel="shortcut icon"
+        type="image/x-icon"
+        href="~/assets/images/favicon.png"/>
+
+    <!-- CSS
+    ============================================ -->
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="~/css/site.css"/>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/assets/css/vendor/bootstrap.min.css"/>
+    <link rel="stylesheet" href="~/assets/css/vendor/font-awesome.css"/>
+    <link rel="stylesheet" href="~/assets/css/vendor/slick.css"/>
+    <link rel="stylesheet" href="~/assets/css/vendor/slick-theme.css"/>
+    <link rel="stylesheet" href="~/assets/css/vendor/base.css"/>
+    <link rel="stylesheet" href="~/assets/css/plugins/plugins.css"/>
+    <link rel="stylesheet" href="~/assets/css/style.css"/>
+</head>
+
+<body class="active-dark-mode">
+<div style="min-height: 100vh"3 class="main-wrapper">
+<div class="mouse-cursor cursor-outer"></div>
+<div class="mouse-cursor cursor-inner"></div>
+
+<!-- Start Header -->
+<header class="header axil-header header-light header-sticky">
+    <div class="header-wrap">
+        <div class="row justify-content-between align-items-center">
+            <div class="col-xl-3 col-lg-3 col-md-4 col-sm3 col-12">
+                <div class="logo">
+                    <a asp-controller="Home" asp-action="Index">
+                        <img
+                            class="dark-logo"
+                            src="~/assets/images/logo/logo-black.png"
+                            alt="Blogar logo"/>
+                        <img
+                            class="light-logo"
+                            src="~/assets/images/logo/logo-white2.png"
+                            alt="Blogar logo"/>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-xl-6 d-none d-xl-block">
+                <div class="mainmenu-wrapper">
+                    <nav class="mainmenu-nav">
+                        <!-- Start Mainmanu Nav -->
+                        <ul class="mainmenu">
+                            <li>
+                                <a asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
+                            <li class="menu-item-has-children">
+                                <a style="cursor: pointer;">Categories</a>
+                                <ul class="axil-submenu">
+                                    @foreach (var category in await _categoryService.GetAllAsync())
+                                    {
+                                        <li>
+                                            <a asp-controller="Categories" asp-action="Index" asp-route-categoryName="@category.Name">@category.Name</a>
+                                        </li>
+                                    }
+                                </ul>
+                            </li>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <li>
+                                    <a asp-controller="Blogs" asp-action="NewBlog">New blog</a>
+                                </li>
+                            }
+                        </ul>
+                        <!-- End Mainmanu Nav -->
+                    </nav>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-lg-8 col-md-8 col-sm-9 col-12">
+                <div class="header-search text-end d-flex align-items-center">
+                    <form asp-controller="Home" asp-action="Search" method="get" class="header-search-form d-sm-block d-none">
+                        <div class="axil-search form-group">
+                            <button type="submit" class="search-button">
+                                <i class="fal fa-search"></i>
+                            </button>
+                            <input
+                                required
+                                name="blogTitle"
+                                type="text"
+                                class="form-control"
+                                placeholder="Search by title"/>
+                        </div>
+                    </form>
+                    <div class="mobile-search-wrapper d-sm-none d-block">
+                        <button class="search-button-toggle">
+                            <i class="fal fa-search"></i>
+                        </button>
+                        <form class="header-search-form">
+                            <div class="axil-search form-group">
+                                <button type="submit" class="search-button">
+                                    <i class="fal fa-search"></i>
+                                </button>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    placeholder="Search"/>
+                            </div>
+                        </form>
+                    </div>
+                    <ul class="metabar-block">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="icon">
+                                <form asp-controller="Auth" asp-action="LogOut" method="post">
+                                    <button
+                                        style="outline: none; border: none; color: white"
+                                        type="submit"
+                                        href="#">
+                                        <i class="fas fa-sign-out"></i>
+                                    </button>
+                                </form>
+                            </li>
+                            <li>
+                                @{
+                                    var user = await _userService.FindByClaimsAsync(User);
+                                }
+                                <a style="width: 50px !important; height: 50px !important;" asp-controller="Account" asp-action="Index">
+                                    <img
+                                        style="width: 50px !important; height: 50px !important;"
+                                        src="~/uploads/users/@user.ProfilePicture"
+                                        alt="Author Images"/>
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="ml-2">
+                                <a style="font-size: 14px;" asp-controller="Auth" asp-action="Login">LOGIN</a>
+                            </li>
+                            <li>
+                                <a style="font-size: 14px;" asp-controller="Auth" asp-action="Register">REGISTER</a>
+                            </li>
+                        }
+                    </ul>
+                    <!-- Start Hamburger Menu  -->
+                    <div class="hamburger-menu d-block d-xl-none">
+                        <div class="hamburger-inner">
+                            <div class="icon">
+                                <i class="fal fa-bars"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Hamburger Menu  -->
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Start Header -->
+
+<!-- Start Mobile Menu Area  -->
+<div class="popup-mobilemenu-area">
+    <div class="inner">
+        <div class="mobile-menu-top">
+            <div class="logo">
+                <a asp-controller="Home" asp-action="Index">
+                    <img
+                        class="dark-logo"
+                        src="~/assets/images/logo/logo-black.png"
+                        alt="Logo Images"/>
+                    <img
+                        class="white-logo"
+                        src="~/assets/images/logo/logo-white2.png"
+                        alt="Logo Images"/>
+                </a>
+            </div>
+            <div class="mobile-close">
+                <div class="icon">
+                    <i class="fal fa-times"></i>
+                </div>
+            </div>
+        </div>
+        <ul class="mainmenu">
+            <li class="">
+                <a asp-controller="Home" asp-action="Index">Home</a>
+            </li>
+            <li class="menu-item-has-children">
+                <a style="cursor: pointer;">Categories</a>
+                <ul class="axil-submenu">
+                    @foreach (var category in await _categoryService.GetAllAsync())
+                    {
+                        <li>
+                            <a asp-controller="Categories" asp-action="Index" asp-route-categoryName="@category.Name">@category.Name</a>
+                        </li>
+                    }
+                </ul>
+            </li>
+            <li>
+                <a asp-controller="Blogs" asp-action="NewBlog">New Blog</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<!-- End Mobile Menu Area  -->
+<!-- Start Banner Area -->
+<h1 class="d-none">Home Default Blog</h1>
+
+<!-- End Banner Area -->
+@RenderBody()
+<div class="axil-footer-area axil-footer-style-1 footer-variation-2">
+    <!-- Start Footer Top Area  -->
+    <div class="footer-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-4">
+                    <div class="logo">
+                        <a asp-controller="Home" asp-action="Index">
+                            <img
+                                class="dark-logo"
+                                src="~/assets/images/logo/logo-black.png"
+                                alt="Logo Images"/>
+                            <img
+                                class="white-logo"
+                                src="~/assets/images/logo/logo-white2.png"
+                                alt="Logo Images"/>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-lg-8 col-md-8">
+                    <!-- Start Post List  -->
+                    <div
+                        class="d-flex justify-content-start mt_sm--15 justify-content-md-end align-items-center flex-wrap">
+                        <h5 class="follow-title mb--0 mr--20">Follow Us</h5>
+                        <ul
+                            class="social-icon color-tertiary md-size justify-content-start">
+                            <li>
+                                <a href="#">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- End Post List  -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Footer Top Area  -->
+
+    <!-- Start Copyright Area  -->
+    <div class="copyright-area">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-9 col-md-8">
+                    <div class="copyright-left">
+                        <ul class="mainmenu justify-content-start"></ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4">
+                    <div class="copyright-right text-start text-md-end mt_sm--20">
+                        <p class="b3">All Rights Reserved © @DateTime.Now.ToString("yyyy")</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Copyright Area  -->
+</div>
+<!-- End Footer Area  -->
+
+<!-- Start Back To Top  -->
+<a id="backto-top"></a>
+</div>
+
+<!-- JS
+============================================ -->
+<!-- Modernizer JS -->
+<script src="~/assets/js/vendor/modernizr.min.js"></script>
+<!-- jQuery JS -->
+<script src="~/assets/js/vendor/jquery.js"></script>
+<!-- Bootstrap JS -->
+<script src="~/assets/js/vendor/bootstrap.min.js"></script>
+<script src="~/assets/js/vendor/slick.min.js"></script>
+<script src="~/assets/js/vendor/tweenmax.min.js"></script>
+<script src="~/assets/js/vendor/js.cookie.js"></script>
+<script src="~/assets/js/vendor/jquery.style.switcher.js"></script>
+
+@* <script src="~/lib/jquery/dist/jquery.min.js"></script> *@
+@* <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script> *@
+@* <script src="~/js/site.js" asp-append-version="true"></script> *@
+@await RenderSectionAsync("Scripts", required: false)
+
+<!-- Main JS -->
+<script src="~/assets/js/main.js"></script>
+</body>
+
+<!-- Mirrored from axilthemes.com/demo/template/blogar/index-dark.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 17 Mar 2022 22:20:44 GMT -->
+</html>

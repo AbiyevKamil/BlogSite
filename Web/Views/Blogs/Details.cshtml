@@ -1,0 +1,325 @@
+﻿@using Core.Entities
+@using Service.Business.Abstract
+@model Core.Entities.Blog
+@{
+    ViewData["Title"] = "Details";
+}
+@inject IUserService _userService
+
+<style>
+    .more-section {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+    }
+    
+    .modal * {
+        font-size: 16px !important;
+    }
+</style>
+
+<!-- Start Banner Area -->
+<div
+    class="banner banner-single-post post-formate post-standard alignwide">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- Start Single Slide  -->
+                <div class="content-block">
+                    <!-- Start Post Thumbnail  -->
+                    <div style="width: 100% !important; height: 100% !important;" class="post-thumbnail">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            var user = await _userService.FindByClaimsAsync(User);
+                            if (user == Model.User)
+                            {
+                                <div class="more-section">
+                                    <!-- Button trigger modal -->
+                                    <button style="font-size: 16px !important;" type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                        More
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title text-dark" id="staticBackdropLabel">Update blog</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-footer d-flex align-items-center justify-content-between">
+                                                    <div class="d-flex align-items-center justify-content-between w-100">
+                                                        <a asp-controller="Blogs" asp-action="UpdateBlog" asp-route-uniqueUrl="@Model.UniqueUrl" class="btn btn-info">Edit</a>
+                                                        <!-- Button trigger modal -->
+                                                        <button style="font-size: 16px !important; width: 60px !important;" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop_3">
+                                                            Delete
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="staticBackdrop_3" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title text-dark" id="staticBackdropLabel">Update blog</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body text-dark">
+                                                    Are you sure you want to delete?
+                                                    <p class="text-danger">@Model.Title</p>
+                                                </div>
+                                                <div class="modal-footer d-flex align-items-center justify-content-between">
+                                                    <div class="d-flex align-items-center justify-content-between w-100">
+                                                        <button style="width: 60px !important;" type="button" class="btn-sm btn-secondary" data-bs-dismiss="modal">No</button>
+                                                        <form asp-controller="Blogs" asp-action="DeleteBlog" method="post">
+                                                            <input type="hidden" name="blogId" value="@Model.Id">
+                                                            <button type="submit" class="btn-sm btn-danger">Yes</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                        <img
+                            style="width: 100% !important; height: 100% !important;"
+                            src="~/uploads/blogs/@Model.Banner"
+                            alt="Post Images"/>
+                    </div>
+                    <!-- End Post Thumbnail  -->
+                    <!-- Start Post Content  -->
+                    <div class="post-content">
+                        <h1 class="title">
+                            @Model.Title
+                        </h1>
+                        <!-- Post Meta  -->
+                        <div class="post-meta-wrapper">
+                            <div class="post-meta">
+                                <div class="post-author-avatar border-rounded">
+                                    <img
+                                        style="width: 50px !important; height: 50px !important;"
+                                        src="~/uploads/users/@Model.User.ProfilePicture"
+                                        alt="Author Images"/>
+                                </div>
+                                <div class="content">
+                                    <h6 class="post-author-name">
+                                        <a class="hover-flip-item-wrapper">
+                                            <span class="hover-flip-item">
+                                                <span data-text="@Model.User.FullName">@Model.User.FullName</span>
+                                            </span>
+                                        </a>
+                                    </h6>
+                                    <ul class="post-meta-list">
+                                        <li>@Model.CreatedDate.ToString("dd MMMM yyyy")</li>
+                                        <li>@Model.ViewCount Views</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- End Post Content  -->
+                </div>
+                <!-- End Single Slide  -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Banner Area -->
+
+<!-- Start Post Single Wrapper  -->
+<div style="padding-bottom: 0;" class="post-single-wrapper axil-section-gap bg-color-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="axil-post-details">
+                    <p class="has-medium-font-size">
+                        @Model.Content
+                    </p>
+                    <div class="tagcloud">
+                        <a asp-controller="Categories" asp-action="Index" asp-route-categoryName="@Model.Category.Name">
+                            @Model.Category.Name
+                        </a>
+                    </div>
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <!-- Start Comment Form Area  -->
+                        <div class="axil-comment-area">
+
+                            <!-- Start Comment Respond  -->
+                            <div class="comment-respond">
+                                <h4 class="title">Post a comment</h4>
+                                <form asp-controller="Blogs" asp-action="AddComment" method="post">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <input type="hidden" name="blogId" value="@Model.Id"/>
+                                            <textarea class="text-white" name="message"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12">
+                                        <div class="form-submit cerchio">
+                                            <input
+                                                name="submit"
+                                                type="submit"
+                                                id="submit"
+                                                class="axil-button button-rounded"
+                                                value="Post Comment"/>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- End Comment Respond  -->
+                    }
+
+                    <!-- Start Comment Area  -->
+                    <div class="axil-comment-area">
+                        <h4 class="title">@Model.Comments.Count() comments</h4>
+                        <ul class="comment-list">
+
+                            @foreach (var comment in Model.Comments)
+                            {
+                                <!-- Start Single Comment  -->
+                                <li style="position: relative;" class="comment">
+                                    @{
+                                        var user = await _userService.FindByClaimsAsync(User);
+                                        if (user.Id == comment.UserId)
+                                        {
+                                            <div class="more-section">
+                                                <!-- Button trigger modal -->
+                                                <button style="font-size: 16px !important;" type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop_2">
+                                                    Delete
+                                                </button>
+
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="staticBackdrop_2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title text-dark" id="staticBackdropLabel">Delete Comment</h5>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div >
+                                                                <form asp-controller="Blogs" asp-action="DeleteComment" method="post" class="modal-footer d-flex align-items-center justify-content-between">
+                                                                    <input type="hidden" name="blogId" value="@Model.Id">
+                                                                    <input type="hidden" name="commentId" value="@comment.Id">
+                                                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                    }
+                                    <div class="comment-body">
+                                        <div class="single-comment">
+                                            <div class="comment-img">
+                                                <img
+                                                    src="~/uploads/users/@comment.User.ProfilePicture"
+                                                    alt="Author Images"/>
+                                            </div>
+                                            <div class="comment-inner">
+                                                <h6 class="commenter">
+                                                    <a class="hover-flip-item-wrapper">
+                                                        <span class="hover-flip-item">
+                                                            <span data-text="@comment.User.FullName">
+                                                                @comment.User.FullName
+                                                            </span
+                                                            >
+                                                        </span>
+                                                    </a>
+                                                </h6>
+                                                <div class="comment-meta">
+                                                    <div class="time-spent">
+                                                        @comment.CreatedDate.ToString("f")
+                                                    </div>
+                                                </div>
+                                                <div class="comment-text">
+                                                    <p class="b2">
+                                                        @comment.Content
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <!-- End Single Comment  -->
+                            }
+                        </ul>
+                    </div>
+                    <!-- End Comment Area  -->
+                </div>
+                <!-- End Comment Form Area  -->
+            </div>
+            <div class="col-lg-4">
+                <!-- Start Sidebar Area  -->
+                <div class="sidebar-inner">
+                    <!-- Start Single Widget  -->
+                    <div class="axil-single-widget widget widget_search mb--30">
+                        <h5 class="widget-title">Search</h5>
+                        <form asp-controller="Home" asp-action="Search" method="get" >
+                            <div class="axil-search form-group">
+                                <button type="submit" class="search-button">
+                                    <i class="fal fa-search"></i>
+                                </button>
+                                <input
+                                    required
+                                    name="blogTitle"
+                                    type="text"
+                                    class="form-control"
+                                    placeholder="Search by title"/>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- End Single Widget  -->
+
+                    <!-- Start Single Widget  -->
+                    <div class="axil-single-widget widget widget_postlist mb--30">
+                        <h5 class="widget-title">Popular on Blogar</h5>
+                        <!-- Start Post List  -->
+                        <div class="post-medium-block">
+                            @foreach (var blog in ViewBag.PopularBlogs)
+                            {
+                                <!-- Start Single Post  -->
+                                <div class="content-block post-medium mb--20">
+                                    <div class="post-thumbnail" style="width: 100%">
+                                        <a asp-controller="Blogs" asp-action="Details" asp-route-uniqueUrl="@blog.UniqueUrl">
+                                            <img
+                                                src="~/uploads/blogs/@blog.Banner"
+                                                alt="Post Images"/>
+                                        </a>
+                                    </div>
+                                    <div class="post-content">
+                                        <h6 class="title">
+                                            <a asp-controller="Blogs" asp-action="Details" asp-route-uniqueUrl="@blog.UniqueUrl">
+                                                @blog.Title
+                                            </a>
+                                        </h6>
+                                        <div class="post-meta">
+                                            <ul class="post-meta-list">
+                                                <li>@blog.CreatedDate.ToString("dd MMMM yyyy")</li>
+                                                <li>@blog.ViewCount Views</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Single Post  -->
+                            }
+                        </div>
+                        <!-- End Post List  -->
+                    </div>
+                    <!-- End Single Widget  -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Post Single Wrapper  -->

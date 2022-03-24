@@ -1,0 +1,67 @@
+@model RegisterModel
+
+@{
+    ViewBag.Title = "Registration";
+}
+
+<style>
+    .register {
+        width: 50vw;
+    }
+    
+    .title {
+        padding-top: 15px !important;
+    }
+</style>
+
+<div class="axil-comment-area">
+    <!-- Start Comment Respond  -->
+    <h4 class="title text-center">Registration</h4>
+    <div class="comment-respond d-flex align-items-center justify-content-center">
+        <form asp-action="Register" asp-controller="Auth" method="post" class="register">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="col-12">
+                <div class="form-group">
+                    <label asp-for="Email"></label>
+                    <input asp-for="Email"/>
+                    <span class="text-danger" asp-validation-for="Email"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="UserName"></label>
+                    <input asp-for="UserName"/>
+                    <span class="text-danger" asp-validation-for="UserName"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="FullName"></label>
+                    <input asp-for="FullName"/>
+                    <span class="text-danger" asp-validation-for="FullName"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Description"></label>
+                    <textarea class="text-white" asp-for="Description"></textarea>
+                    <span class="text-danger" asp-validation-for="Description"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password"></label>
+                    <input asp-for="Password"/>
+                    <span class="text-danger" asp-validation-for="Password"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ConfirmPassword"></label>
+                    <input asp-for="ConfirmPassword"/>
+                    <span class="text-danger" asp-validation-for="ConfirmPassword"></span>
+                </div>
+            </div>
+            <div class="col-lg-12 d-flex justify-content-center align-items-center">
+                <div class="form-submit cerchio">
+                    <input
+                        name="submit"
+                        type="submit"
+                        id="submit"
+                        class="axil-button button-rounded"
+                        value="Register"/>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
