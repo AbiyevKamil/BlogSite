@@ -23,7 +23,7 @@ namespace DataAccess.Repositories.Implementation
             _dbSet = _context.Blogs;
         }
 
-        public async Task<IEnumerable<Blog>> GetAllAsync()
+        public async Task<IEnumerable<Blog>> GetAllPublicAsync()
         {
             return await _dbSet.Where(i => i.IsApproved && !i.IsDeleted)
                 .Include(i => i.User)
@@ -51,6 +51,16 @@ namespace DataAccess.Repositories.Implementation
                 .ThenInclude(i => i.User)
                 .Include(i => i.Category)
                 .Where(i => i.Title.Contains(blogTitle))
+                .OrderByDescending(i => i.CreatedDate)
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<Blog>> GetAllAsync()
+        {
+            return await _dbSet.Include(i => i.User)
+                .Include(i => i.Comments)
+                .ThenInclude(i => i.User)
+                .Include(i => i.Category)
                 .OrderByDescending(i => i.CreatedDate)
                 .ToListAsync();
         }
@@ -146,6 +156,23 @@ namespace DataAccess.Repositories.Implementation
                 .ThenInclude(i => i.User)
                 .Include(i => i.Category)
                 .FirstOrDefaultAsync(i => i.Id == id && !i.IsDeleted);
+        }
+
+        public async Task<Blog> GetByIdAsync(int id)
+        {
+            return await _dbSet.Include(i => i.User).Include(i => i.Comments)
+                .ThenInclude(i => i.User)
+                .Include(i => i.Category)
+                .FirstOrDefaultAsync(i => i.Id == id);
+        }
+
+        public async Task ApproveAsync(int id)
+        {
+            var exist = await _dbSet.FirstOrDefaultAsync(i => i.Id == id);
+            if (exist is not null)
+            {
+                exist.IsApproved = true;
+            }
         }
 
         public async Task<Blog> FindPrivateByUrlAsync(string url)

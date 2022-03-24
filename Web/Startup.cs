@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Core.Constants;
 using Core.Entities;
 using Core.Helpers;
 using DataAccess.Persistance.Contexts;
@@ -18,6 +19,7 @@ using DataAccess.Repositories.Implementation;
 using DataAccess.Repositories.Implementation.Base;
 using DataAccess.UnitOfWork.Abstract;
 using DataAccess.UnitOfWork.Implementation;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
@@ -42,6 +44,13 @@ namespace Web
         {
             var conString = Configuration.GetConnectionString("ConString");
             services.AddDbContext<BlogContext>(options => { options.UseSqlServer(conString); });
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.AccessDeniedPath = "/home/index";
+                options.LoginPath = "/auth/login";
+                options.LogoutPath = "/auth/logout";
+                options.ExpireTimeSpan = TimeSpan.FromHours(72);
+            });
             services.AddIdentity<User, Role>(
                     options =>
                     {
@@ -61,7 +70,7 @@ namespace Web
             // DI
             services.AddSingleton<EmailService>();
             services.AddSingleton<FileService>();
-            
+
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IRoleRepository, RoleRepository>();
@@ -100,7 +109,7 @@ namespace Web
 
             app.UseAuthentication();
             app.UseAuthorization();
-
+            
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

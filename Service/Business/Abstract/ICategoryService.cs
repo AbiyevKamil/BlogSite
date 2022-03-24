@@ -11,5 +11,7 @@ namespace Service.Business.Abstract
         Task CreateAsync(Category category);
         Task DeleteAsync(Category category);
         Task UpdateAsync(int id, Category category);
+        Task<Category> FindByNameAsync(string categoryName);
+
     }
 }

@@ -1,0 +1,165 @@
+@model Web.Models.Admin.AdminModel
+
+@{
+    ViewBag.Title = "Admin Panel";
+}
+
+<style>
+    .action-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction:column ;
+    }
+    
+    .action-forms button {
+        font-size: 16px;
+        margin-bottom: 5px;
+    }
+</style>
+
+<div class="container py-4">
+    <h2>Blogs</h2>
+    <table class="table table-dark">
+        <thead>
+        <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Content</th>
+            <th scope="col">Author</th>
+            <th scope="col">Views</th>
+            <th scope="col">Is deleted?</th>
+            <th scope="col">Is approved?</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var blog in Model.Blogs)
+        {
+            <tr>
+                <td>
+                    <a asp-controller="Blogs" asp-action="Details" asp-route-uniqueUrl="@blog.UniqueUrl">
+                        @blog.Title
+                    </a>
+                </td>
+                <td>
+                    <a asp-controller="Blogs" asp-action="Details" asp-route-uniqueUrl="@blog.UniqueUrl">
+                        @blog.Content.Substring(0, 10)
+                    </a>
+                </td>
+                <td>@blog.User.FullName</td>
+                <td>@blog.ViewCount</td>
+                <td>@blog.IsDeleted</td>
+                <td>@blog.IsApproved</td>
+                <td class="action-container">
+                    @if (!blog.IsApproved)
+                    {
+                        <form method="post" class="action-forms" asp-controller="Admin" asp-action="ApproveBlog">
+                            <input type="hidden" name="blogId" value="@blog.Id"/>
+                            <button class="btn btn-sm btn-success">Approve</button>
+                        </form>
+                    }
+                    @if (blog.IsDeleted)
+                    {
+                        <form method="post" class="action-forms" asp-controller="Admin" asp-action="RestoreBlog">
+                            <input type="hidden" name="blogId" value="@blog.Id"/>
+                            <button class="btn btn-sm btn-info">Restore</button>
+                        </form>
+                    }
+                    else
+                    {
+                        <form method="post" class="action-forms" asp-controller="Admin" asp-action="DeleteBlog">
+                            <input type="hidden" name="blogId" value="@blog.Id"/>
+                            <button class="btn btn-sm btn-danger">Delete</button>
+                        </form>
+                    }
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+    <br>
+    <h2>Categories</h2>
+    <form class="action-forms form-group" asp-controller="Admin" asp-action="AddCategory">
+        <div class="form-group">
+            <label for="name">Category name</label>
+            <input type="text" class="form-control" id="name" name="categoryName"/>
+        </div>
+        <button class="btn btn-sm btn-success">Add</button>
+    </form>
+    <table class="table table-dark">
+        <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var category in Model.Categories)
+        {
+            <tr class="bg-dark">
+                <td>
+                    @if (ViewBag.CategoryId is not null && ViewBag.CategoryId == category.Id)
+                    {
+                        <form class="action-forms form-group" asp-controller="Admin" asp-action="EditCategory">
+                            <div class="form-group">
+                                <input type="hidden" name="categoryId" value="@category.Id"/>
+                                <label for="name" value="@category.Name" name="categoryName">Category name</label>
+                                <input type="text" value="@category.Name" class="form-control" id="name" name="categoryName"/>
+                            </div>
+                            <button class="btn btn-sm btn-success">Update</button>
+                        </form>
+                    }
+                    else
+                    {
+                        <a asp-controller="Categories" asp-action="Index" asp-route-categoryName="@category.Name">
+                            @category.Name
+                        </a>
+                    }
+                </td>
+                <td class="h-100 d-flex align-items-center">
+                    <form method="post" class="action-forms mr-3" asp-controller="Admin" asp-action="Index">
+                        <input type="hidden" name="categoryId" value="@category.Id"/>
+                        <button class="btn btn-sm btn-info">Edit</button>
+                    </form>
+                    <form method="post" class="action-forms" asp-controller="Admin" asp-action="DeleteCategory">
+                        <input type="hidden" name="categoryId" value="@category.Id"/>
+                        <button class="btn btn-sm btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+    <br>
+    <h2>Comments</h2>
+    <table class="table table-dark">
+        <thead>
+        <tr>
+            <th scope="col">Content</th>
+            <th scope="col">Blog</th>
+            <th scope="col">Author</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var comment in Model.Comments)
+        {
+            <tr>
+                <td>@comment.Content</td>
+                <td>
+                    <a asp-controller="Blogs" asp-action="Details" asp-route-uniqueUrl="@comment.Blog.UniqueUrl">
+                        @comment.Blog.Title
+                    </a>
+                </td>
+                <td>@comment.User.FullName</td>
+                <td class="action-container">
+                    <form method="post" class="action-forms" asp-controller="Admin" asp-action="DeleteComment">
+                        <input type="hidden" name="commentId" value="@comment.Id"/>
+                        <button class="btn btn-sm btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

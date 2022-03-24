@@ -52,7 +52,7 @@ namespace Web.Controllers
                     {
                         var isAdmin = await _userService.IsInRoleAsync(user, Roles.ADMIN);
                         if (isAdmin)
-                            return RedirectToAction("Admin", "Index");
+                            return RedirectToAction("Index", "Admin");
                         var isUser = await _userService.IsInRoleAsync(user, Roles.USER);
                         if (isUser)
                             return RedirectToAction("Index", "Home");

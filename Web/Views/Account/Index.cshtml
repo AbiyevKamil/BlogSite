@@ -48,6 +48,9 @@
         <div class="user-photo-container">
             <img src="~/uploads/users/@Model.User.ProfilePicture" alt="Author images">
         </div>
+        <div class="div">
+            <p>@Model.User.FullName</p>
+        </div>
         <div class="image-upload-container">
             <form asp-controller="Account" asp-action="ChangeProfilePhoto" method="post" enctype="multipart/form-data">
                 <label for="picture" class="form-label"></label>

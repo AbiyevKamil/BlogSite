@@ -23,7 +23,7 @@ namespace Web.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var blogs = await _blogService.GetAllAsync();
+            var blogs = await _blogService.GetAllPublicAsync();
             return View(blogs);
         }
 

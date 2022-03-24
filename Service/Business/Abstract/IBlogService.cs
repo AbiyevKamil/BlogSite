@@ -8,14 +8,16 @@ namespace Service.Business.Abstract
     {
         Task CreateAsync(Blog blog);
         Task UpdateAsync(int id, Blog blog);
-        Task<IEnumerable<Blog>> GetAllAsync();
+        Task<IEnumerable<Blog>> GetAllPublicAsync();
         Task<Blog> FindPublicByUrlAsync(string url);
         Task<IEnumerable<Blog>> FindPublicByUserAsync(User user);
         Task<IEnumerable<Blog>> GetAllByUserAsync(User user);
         Task<IEnumerable<Blog>> GetPublicByTitleAsync(string blogTitle);
-
+        public Task<IEnumerable<Blog>> GetAllAsync();
         Task<Blog> FindPublicByIdAsync(int id);
         Task<Blog> FindPrivateByIdAsync(int id);
+        Task<Blog> GetByIdAsync(int id);
+        Task ApproveAsync(int id);
 
         Task<Blog> FindPrivateByUrlAsync(string url);
         Task<IEnumerable<Blog>> FindPrivateByUserAsync(User user);

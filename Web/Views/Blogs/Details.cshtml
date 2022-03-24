@@ -203,15 +203,21 @@
                                                     <div class="modal-dialog">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
-                                                                <h5 class="modal-title text-dark" id="staticBackdropLabel">Delete Comment</h5>
+                                                                <h5 class="modal-title text-dark" id="staticBackdropLabel">Do you want to delete this comment?</h5>
                                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                             </div>
-                                                            <div >
-                                                                <form asp-controller="Blogs" asp-action="DeleteComment" method="post" class="modal-footer d-flex align-items-center justify-content-between">
-                                                                    <input type="hidden" name="blogId" value="@Model.Id">
-                                                                    <input type="hidden" name="commentId" value="@comment.Id">
-                                                                    <button type="submit" class="btn btn-danger">Delete</button>
-                                                                </form>
+                                                            <div class="modal-body">
+                                                                @comment.Content
+                                                            </div>
+                                                            <div class="modal-footer d-flex align-items-center justify-content-between">
+                                                                <div class="d-flex align-items-center justify-content-between w-100">
+                                                                    <button style="width: 60px !important;" type="button" class="btn-sm btn-secondary" data-bs-dismiss="modal">No</button>
+                                                                    <form asp-controller="Blogs" asp-action="DeleteComment" method="post">
+                                                                        <input type="hidden" name="blogId" value="@Model.Id">
+                                                                        <input type="hidden" name="commentId" value="@comment.Id">
+                                                                        <button type="submit" class="btn btn-danger">Yes</button>
+                                                                    </form>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -265,7 +271,7 @@
                     <!-- Start Single Widget  -->
                     <div class="axil-single-widget widget widget_search mb--30">
                         <h5 class="widget-title">Search</h5>
-                        <form asp-controller="Home" asp-action="Search" method="get" >
+                        <form asp-controller="Home" asp-action="Search" method="get">
                             <div class="axil-search form-group">
                                 <button type="submit" class="search-button">
                                     <i class="fal fa-search"></i>

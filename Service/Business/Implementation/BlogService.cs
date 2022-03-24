@@ -28,9 +28,9 @@ namespace Service.Business.Implementation
         }
 
 
-        public async Task<IEnumerable<Blog>> GetAllAsync()
+        public async Task<IEnumerable<Blog>> GetAllPublicAsync()
         {
-            return await _unitOfWork.Blogs.GetAllAsync();
+            return await _unitOfWork.Blogs.GetAllPublicAsync();
         }
 
         public async Task<Blog> FindPublicByUrlAsync(string url)
@@ -53,6 +53,11 @@ namespace Service.Business.Implementation
             return await _unitOfWork.Blogs.GetPublicByTitleAsync(blogTitle);
         }
 
+        public async Task<IEnumerable<Blog>> GetAllAsync()
+        {
+            return await _unitOfWork.Blogs.GetAllAsync();
+        }
+
         public async Task<Blog> FindPublicByIdAsync(int id)
         {
             return await _unitOfWork.Blogs.FindPublicByIdAsync(id);
@@ -61,6 +66,17 @@ namespace Service.Business.Implementation
         public async Task<Blog> FindPrivateByIdAsync(int id)
         {
             return await _unitOfWork.Blogs.FindPrivateByIdAsync(id);
+        }
+
+        public async Task<Blog> GetByIdAsync(int id)
+        {
+            return await _unitOfWork.Blogs.GetByIdAsync(id);
+        }
+
+        public async Task ApproveAsync(int id)
+        {
+            await _unitOfWork.Blogs.ApproveAsync(id);
+            await _unitOfWork.CommitAsync();
         }
 
         public async Task<Blog> FindPrivateByUrlAsync(string url)

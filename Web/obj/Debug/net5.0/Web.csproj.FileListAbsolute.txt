@@ -90,3 +90,4 @@ D:\Kamil\ASPNETCore\BlogSite\web\obj\Debug\net5.0\Razor\Views\Blogs\NewBlog.csht
 D:\Kamil\ASPNETCore\BlogSite\Web\obj\Debug\net5.0\Razor\Views\Account\Index.cshtml.g.cs
 D:\Kamil\ASPNETCore\BlogSite\Web\obj\Debug\net5.0\Razor\Views\Blogs\UpdateBlog.cshtml.g.cs
 D:\Kamil\ASPNETCore\BlogSite\Web\obj\Debug\net5.0\Razor\Views\Home\Search.cshtml.g.cs
+D:\Kamil\ASPNETCore\BlogSite\Web\obj\Debug\net5.0\Razor\Views\Admin\Index.cshtml.g.cs

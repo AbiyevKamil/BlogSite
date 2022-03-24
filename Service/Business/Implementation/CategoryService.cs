@@ -27,8 +27,8 @@ namespace Service.Business.Implementation
 
         public async Task CreateAsync(Category category)
         {
-             await _unitOfWork.Categories.CreateAsync(category);
-             await _unitOfWork.CommitAsync();
+            await _unitOfWork.Categories.CreateAsync(category);
+            await _unitOfWork.CommitAsync();
         }
 
         public async Task DeleteAsync(Category category)
@@ -39,8 +39,13 @@ namespace Service.Business.Implementation
 
         public async Task UpdateAsync(int id, Category category)
         {
-            await _unitOfWork.Categories.UpdateAsync(id,category);
+            await _unitOfWork.Categories.UpdateAsync(id, category);
             await _unitOfWork.CommitAsync();
+        }
+
+        public async Task<Category> FindByNameAsync(string categoryName)
+        {
+            return await _unitOfWork.Categories.FindByNameAsync(categoryName);
         }
     }
 }

@@ -5,7 +5,68 @@
     <projectFile profileName="Web">Web/Web.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ae4006ae-9ee0-4e62-9752-df1456b9f921" name="Changes" comment="" />
+    <list default="true" id="ae4006ae-9ee0-4e62-9752-df1456b9f921" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Web/Models/Admin/AdminModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web/Views/Admin/Index.cshtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web/obj/Debug/net5.0/Razor/Views/Admin/Index.cshtml.g.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.BlogSite/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BlogSite/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/Core/obj/rider.project.restore.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataAccess/Persistance/Seeding/SeedData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DataAccess/Persistance/Seeding/SeedData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataAccess/Repositories/Abstract/IBlogRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DataAccess/Repositories/Abstract/IBlogRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataAccess/Repositories/Abstract/ICategoryRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DataAccess/Repositories/Abstract/ICategoryRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataAccess/Repositories/Implementation/BlogRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DataAccess/Repositories/Implementation/BlogRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataAccess/Repositories/Implementation/CategoryRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DataAccess/Repositories/Implementation/CategoryRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataAccess/bin/Debug/net5.0/DataAccess.dll" beforeDir="false" afterPath="$PROJECT_DIR$/DataAccess/bin/Debug/net5.0/DataAccess.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataAccess/bin/Debug/net5.0/DataAccess.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/DataAccess/bin/Debug/net5.0/DataAccess.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataAccess/obj/Debug/net5.0/DataAccess.dll" beforeDir="false" afterPath="$PROJECT_DIR$/DataAccess/obj/Debug/net5.0/DataAccess.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataAccess/obj/Debug/net5.0/DataAccess.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/DataAccess/obj/Debug/net5.0/DataAccess.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataAccess/obj/Debug/net5.0/ref/DataAccess.dll" beforeDir="false" afterPath="$PROJECT_DIR$/DataAccess/obj/Debug/net5.0/ref/DataAccess.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataAccess/obj/Debug/net5.0/refint/DataAccess.dll" beforeDir="false" afterPath="$PROJECT_DIR$/DataAccess/obj/Debug/net5.0/refint/DataAccess.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataAccess/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/DataAccess/obj/rider.project.restore.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Service/Business/Abstract/IBlogService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Service/Business/Abstract/IBlogService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Service/Business/Abstract/ICategoryService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Service/Business/Abstract/ICategoryService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Service/Business/Implementation/BlogService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Service/Business/Implementation/BlogService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Service/Business/Implementation/CategoryService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Service/Business/Implementation/CategoryService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Service/bin/Debug/net5.0/DataAccess.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Service/bin/Debug/net5.0/DataAccess.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Service/bin/Debug/net5.0/DataAccess.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Service/bin/Debug/net5.0/DataAccess.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Service/bin/Debug/net5.0/Service.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Service/bin/Debug/net5.0/Service.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Service/bin/Debug/net5.0/Service.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Service/bin/Debug/net5.0/Service.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Service/obj/Debug/net5.0/Service.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Service/obj/Debug/net5.0/Service.csproj.AssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Service/obj/Debug/net5.0/Service.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Service/obj/Debug/net5.0/Service.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Service/obj/Debug/net5.0/Service.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Service/obj/Debug/net5.0/Service.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Service/obj/Debug/net5.0/ref/Service.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Service/obj/Debug/net5.0/ref/Service.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Service/obj/Debug/net5.0/refint/Service.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Service/obj/Debug/net5.0/refint/Service.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Service/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/Service/obj/rider.project.restore.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/Controllers/AdminController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Web/Controllers/AdminController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/Controllers/AuthController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Web/Controllers/AuthController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/Controllers/HomeController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Web/Controllers/HomeController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Web/Startup.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/Views/Account/Index.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Web/Views/Account/Index.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/Views/Blogs/Details.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Web/Views/Blogs/Details.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/Views/Shared/_Layout.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Web/Views/Shared/_Layout.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/bin/Debug/net5.0/DataAccess.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Web/bin/Debug/net5.0/DataAccess.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/bin/Debug/net5.0/DataAccess.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Web/bin/Debug/net5.0/DataAccess.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/bin/Debug/net5.0/Service.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Web/bin/Debug/net5.0/Service.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/bin/Debug/net5.0/Service.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Web/bin/Debug/net5.0/Service.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/bin/Debug/net5.0/Web.Views.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Web/bin/Debug/net5.0/Web.Views.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/bin/Debug/net5.0/Web.Views.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Web/bin/Debug/net5.0/Web.Views.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/bin/Debug/net5.0/Web.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Web/bin/Debug/net5.0/Web.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/bin/Debug/net5.0/Web.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Web/bin/Debug/net5.0/Web.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/obj/Debug/net5.0/Razor/Views/Account/Index.cshtml.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Web/obj/Debug/net5.0/Razor/Views/Account/Index.cshtml.g.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/obj/Debug/net5.0/Razor/Views/Blogs/Details.cshtml.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Web/obj/Debug/net5.0/Razor/Views/Blogs/Details.cshtml.g.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/obj/Debug/net5.0/Razor/Views/Shared/_Layout.cshtml.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Web/obj/Debug/net5.0/Razor/Views/Shared/_Layout.cshtml.g.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/obj/Debug/net5.0/Web.RazorCoreGenerate.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Web/obj/Debug/net5.0/Web.RazorCoreGenerate.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/obj/Debug/net5.0/Web.Views.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Web/obj/Debug/net5.0/Web.Views.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/obj/Debug/net5.0/Web.Views.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Web/obj/Debug/net5.0/Web.Views.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/obj/Debug/net5.0/Web.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Web/obj/Debug/net5.0/Web.csproj.AssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/obj/Debug/net5.0/Web.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Web/obj/Debug/net5.0/Web.csproj.CoreCompileInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/obj/Debug/net5.0/Web.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Web/obj/Debug/net5.0/Web.csproj.FileListAbsolute.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/obj/Debug/net5.0/Web.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Web/obj/Debug/net5.0/Web.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/obj/Debug/net5.0/Web.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Web/obj/Debug/net5.0/Web.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/obj/Debug/net5.0/ref/Web.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Web/obj/Debug/net5.0/ref/Web.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/obj/Debug/net5.0/refint/Web.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Web/obj/Debug/net5.0/refint/Web.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/Web/obj/rider.project.restore.info" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -24,6 +85,7 @@
     <setting file="file://$PROJECT_DIR$/../../../Chevre/wesale/backend/Core/Constants/File/FilePath.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/4035669f1d6dc51eae2799b349921a7ad1ea07d5e1a7fd22d72af584f9f19e/StartupLoader.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/17c935e8e783b3baaff3752f33bda9b6bfa326edf751e8d93b0566db3686a/CallSiteFactory.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Web/Models/Account/IndexModel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/ac26cfdf462b65acb9acc2a1373bbdb2d1e258864aa2735e55ce53ebe8b22e/UserManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/1b6d9aef891d740fada4474a66a67cc9d76348d742c9818aa2f7592a2e55aa7/ServiceProvider.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/dc2e1711ae48c25377a35219da8e74d9e39668dec55cec8cbd485a2b626893de/List.cs" root0="SKIP_HIGHLIGHTING" />
@@ -32,11 +94,15 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="26ZM8piUrMKgJwjSR5yChP8yTqB" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -101,9 +167,22 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="false" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
   <component name="XDebuggerManager">

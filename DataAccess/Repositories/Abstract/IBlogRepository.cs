@@ -11,12 +11,15 @@ namespace DataAccess.Repositories.Abstract
         Task<IEnumerable<Blog>> FindPublicByUserAsync(User user);
         Task CreateAsync(Blog blog);
         Task UpdateAsync(int id, Blog blog);
-        Task<IEnumerable<Blog>> GetAllAsync();
+        Task<IEnumerable<Blog>> GetAllPublicAsync();
         Task<IEnumerable<Blog>> GetAllByUserAsync(User user);
         Task<IEnumerable<Blog>> GetPublicByTitleAsync(string blogTitle);
+        Task<IEnumerable<Blog>> GetAllAsync();
 
         Task<Blog> FindPublicByIdAsync(int id);
         Task<Blog> FindPrivateByIdAsync(int id);
+        Task<Blog> GetByIdAsync(int id);
+        Task ApproveAsync(int id);
 
         Task<Blog> FindPrivateByUrlAsync(string url);
         Task<IEnumerable<Blog>> FindPrivateByUserAsync(User user);

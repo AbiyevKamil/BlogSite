@@ -61,8 +61,8 @@ namespace DataAccess.Persistance.Seeding
                         FullName = "Kamil Abiyev",
                         UserName = "Admin"
                     };
-
                     await userManager.CreateAsync(user, "123456");
+                    await userManager.AddToRoleAsync(user, Roles.ADMIN);
                 }
 
                 if (await userManager.FindByNameAsync("User") is null)
