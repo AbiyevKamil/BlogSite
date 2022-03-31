@@ -42,7 +42,7 @@ namespace Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var conString = Configuration.GetConnectionString("ConString");
+            var conString = Configuration.GetConnectionString("ConStringProduction");
             services.AddDbContext<BlogContext>(options => { options.UseSqlServer(conString); });
             services.ConfigureApplicationCookie(options =>
             {
